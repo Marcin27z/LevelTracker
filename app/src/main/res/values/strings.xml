@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MunchkinLevelTracker</string>
+    <string name="preferences_name">preferences_munchkin</string>
+    <string name="munchkin_port">munchkin_port</string>
+    <string name="munchkin_ip">munchkin_ip</string>
+    <string name="munchkin_nickname">munchkin_nickname</string>
+</resources>
