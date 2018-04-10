@@ -9,6 +9,14 @@ import java.util.ArrayList;
 
 class Controller {
 
+  private static Controller instance;
+
+  public static Controller getInstance(String nickName) {
+    if(instance == null)
+      instance = new Controller(nickName);
+    return instance;
+  }
+
   private GameState gameState;
   private Context context;
   private LinearLayout linearLayout;
@@ -16,14 +24,23 @@ class Controller {
   private MasterController masterController;
   private Handler handler;
 
-  Controller(String myNickName, Context context, LinearLayout linearLayout, Handler handler) {
+  private Controller(String myNickName) {
     gameState = GameState.getInstance();
-    playerFields = new ArrayList<>();
-    this.context = context;
-    this.linearLayout = linearLayout;
-    this.handler = handler;
     addPlayer(myNickName);
     updateView();
+  }
+
+  void initContext(Context context) {
+    this.context = context;
+  }
+
+  void initHandler(Handler handler) {
+    this.handler = handler;
+  }
+
+  void initLinearLayout(LinearLayout linearLayout, ArrayList<PlayerField> playerFields) {
+    this.linearLayout = linearLayout;
+    this.playerFields = playerFields;
   }
 
   void initMasterController(MasterController masterController) {

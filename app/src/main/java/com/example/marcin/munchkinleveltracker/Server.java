@@ -76,7 +76,7 @@ class ClientHandler extends Thread {
       objectInputStream = new ObjectInputStream(socket.getInputStream());
       messageWaiter = new MessageWaiter(objectInputStream, onlineEventListener, id);
       messageWaiter.start();
-      queue = new ArrayBlockingQueue<Object>(10);
+      queue = new ArrayBlockingQueue<>(10);
     } catch (IOException e) {
       e.printStackTrace();
     }

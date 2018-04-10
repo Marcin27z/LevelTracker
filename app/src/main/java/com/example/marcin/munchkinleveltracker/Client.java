@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 
-class Client extends Thread{
+class Client extends Thread {
 
   private Socket socket;
   private InetAddress address;

@@ -6,146 +6,23 @@
     android:layout_height="match_parent"
     tools:context="com.example.marcin.munchkinleveltracker.GameActivity">
 
-    <Button
-        android:id="@+id/removeBasicLvl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="-"
-        android:onClick="removeBasicLvl"
-        app:layout_constraintBottom_toTopOf="@+id/removeEqLvl"
-        app:layout_constraintEnd_toStartOf="@+id/basicLvlTextView"
+    <fragment
+        android:id="@+id/levelControlFragment"
+        android:name="com.example.marcin.munchkinleveltracker.LevelControlFragment"
+        android:layout_width="0dp"
+        android:layout_height="345dp"
+        app:layout_constraintBottom_toTopOf="@+id/levelDisplayFragment"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/addBasicLvl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:text="+"
-        android:onClick="addBasicLvl"
-        app:layout_constraintBottom_toTopOf="@+id/addEqLvl"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/basicLvlTextView"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/basicLvlTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
-        app:layout_constraintEnd_toStartOf="@+id/addBasicLvl"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/removeBasicLvl"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/eqLvLTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="48dp"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/addEqLvl"
-        app:layout_constraintStart_toEndOf="@+id/removeEqLvl"
-        app:layout_constraintTop_toBottomOf="@+id/basicLvlTextView" />
-
-    <Button
-        android:id="@+id/removeEqLvl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:text="-"
-        android:onClick="removeEqLvl"
-        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
-        app:layout_constraintEnd_toStartOf="@+id/eqLvLTextView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/removeBasicLvl" />
-
-    <Button
-        android:id="@+id/addEqLvl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="+"
-        android:onClick="addEqLvl"
-        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/eqLvLTextView"
-        app:layout_constraintTop_toBottomOf="@+id/addBasicLvl" />
-
-    <TextView
-        android:id="@+id/totalLvlTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Basic Lvl"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/basicLvlTextView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Eq Lvl"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/eqLvLTextView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/basicLvlTextView" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Total Lvl"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/totalLvlTextView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eqLvLTextView" />
-
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
-        android:layout_width="368dp"
-        android:layout_height="173dp"
+    <fragment
+        android:id="@+id/levelDisplayFragment"
+        android:name="com.example.marcin.munchkinleveltracker.LevelDisplayFragment"
+        android:layout_width="0dp"
+        android:layout_height="147dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/totalLvlTextView">
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"></LinearLayout>
-    </HorizontalScrollView>
+        app:layout_constraintTop_toBottomOf="@+id/levelControlFragment" />
 </android.support.constraint.ConstraintLayout>
