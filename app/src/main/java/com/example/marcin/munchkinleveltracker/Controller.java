@@ -11,13 +11,14 @@ class Controller {
 
   private static Controller instance;
 
-  public static Controller getInstance(String nickName) {
+  static Controller getInstance(String nickName) {
     if(instance == null)
       instance = new Controller(nickName);
     return instance;
   }
 
   private GameState gameState;
+  private Player me;
   private Context context;
   private LinearLayout linearLayout;
   private ArrayList<PlayerField> playerFields;
@@ -27,6 +28,11 @@ class Controller {
   private Controller(String myNickName) {
     gameState = GameState.getInstance();
     addPlayer(myNickName);
+    me = gameState.players.get(0);
+    if(myNickName.matches(".*a"))
+      me.setGender(Player.WOMAN);
+    else
+      me.setGender(Player.MAN);
     updateView();
   }
 
@@ -72,7 +78,7 @@ class Controller {
   }
 
   void updatePlayerField(int i) {
-    playerFields.get(i).update(gameState.players.get(i + 1).getBasicLvl(), gameState.players.get(i + 1).getTotalLvl());
+    playerFields.get(i).update(gameState.players.get(i + 1).getBasicLvl(), gameState.players.get(i + 1).getTotalLvl(), gameState.players.get(i + 1).getGender());
   }
 
   private void addPlayer(String nickName) {
@@ -80,34 +86,43 @@ class Controller {
   }
 
   void addBasicLvl() {
-    gameState.players.get(0).addBasicLvl();
+    me.addBasicLvl();
     masterController.sendGameState();
   }
 
   void removeBasicLvl() {
-    gameState.players.get(0).removeBasicLvl();
+    me.removeBasicLvl();
     masterController.sendGameState();
   }
 
   void addEqLvl() {
-    gameState.players.get(0).addEqLvl();
+    me.addEqLvl();
     masterController.sendGameState();
   }
 
   void removeEqLvl() {
-    gameState.players.get(0).removeEqLvl();
+    me.removeEqLvl();
     masterController.sendGameState();
   }
 
+  void setGender(boolean value) {
+    me.setGender(value);
+    masterController.sendGameState();
+  }
+
+  boolean getGender() {
+    return me.getGender();
+  }
   int getMyBasicLvl() {
-    return gameState.players.get(0).getBasicLvl();
+    return me.getBasicLvl();
   }
 
   int getMyEqLvl() {
-    return gameState.players.get(0).getEqLvl();
+    return me.getEqLvl();
   }
 
   int getMyTotalLvl() {
-    return gameState.players.get(0).getTotalLvl();
+    return me.getTotalLvl();
   }
+
 }

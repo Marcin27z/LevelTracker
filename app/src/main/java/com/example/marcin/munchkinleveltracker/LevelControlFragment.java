@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.support.v7.widget.SwitchCompat;
 import android.widget.TextView;
 
 public class LevelControlFragment extends Fragment {
@@ -18,6 +20,7 @@ public class LevelControlFragment extends Fragment {
   private Button removeEqLvl;
   private Button addEqLvl;
   private Controller controller;
+  private SwitchCompat genderSwitch;
 
   public LevelControlFragment() {
     // Required empty public constructor
@@ -37,6 +40,7 @@ public class LevelControlFragment extends Fragment {
     addBasicLvl = view.findViewById(R.id.addBasicLvl);
     removeEqLvl = view.findViewById(R.id.removeEqLvl);
     addEqLvl = view.findViewById(R.id.addEqLvl);
+    genderSwitch = view.findViewById(R.id.genderSwitch);
     removeBasicLvl.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -67,6 +71,12 @@ public class LevelControlFragment extends Fragment {
         controller.addEqLvl();
         updateEqLvl();
         updateTotal();
+      }
+    });
+    genderSwitch.setChecked(!controller.getGender());
+    genderSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        controller.setGender(!isChecked);
       }
     });
     updateBasicLvl();

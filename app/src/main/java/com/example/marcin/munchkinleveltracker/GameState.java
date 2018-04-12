@@ -29,6 +29,9 @@ class Player implements Serializable {
   private int basicLvl;
   private int eqLvl;
   private String nickName;
+  private boolean gender = MAN;
+  final static boolean MAN = false;
+  final static boolean WOMAN = true;
 
   Player(String nickName, int basicLvl, int eqLvl) {
     this(nickName);
@@ -43,11 +46,16 @@ class Player implements Serializable {
   void assign(Player other) {
     basicLvl = other.getBasicLvl();
     eqLvl = other.getEqLvl();
+    gender = other.getGender();
   }
 
   void addBasicLvl() {
     if(basicLvl < 10)
       basicLvl++;
+  }
+
+  void setGender(boolean value) {
+    gender = value;
   }
 
   void removeBasicLvl() {
@@ -74,6 +82,10 @@ class Player implements Serializable {
 
   int getTotalLvl() {
     return eqLvl + basicLvl;
+  }
+
+  boolean getGender() {
+    return gender;
   }
 
   String getNickName() {
