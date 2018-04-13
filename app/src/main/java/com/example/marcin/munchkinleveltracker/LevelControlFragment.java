@@ -36,8 +36,8 @@ public class LevelControlFragment extends Fragment {
     basicLvl = view.findViewById(R.id.basicLvlTextView);
     eqLvl = view.findViewById(R.id.eqLvLTextView);
     totalLvl = view.findViewById(R.id.totalLvlTextView);
-    removeBasicLvl = view.findViewById(R.id.removeBasicLvl);
-    addBasicLvl = view.findViewById(R.id.addBasicLvl);
+    removeBasicLvl = view.findViewById(R.id.saveIp);
+    addBasicLvl = view.findViewById(R.id.saveNickName);
     removeEqLvl = view.findViewById(R.id.removeEqLvl);
     addEqLvl = view.findViewById(R.id.addEqLvl);
     genderSwitch = view.findViewById(R.id.genderSwitch);

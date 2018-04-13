@@ -1,6 +1,7 @@
 package com.example.marcin.munchkinleveltracker;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Handler;
 import android.util.TypedValue;
@@ -31,18 +32,19 @@ public class PlayerField extends TableLayout {
   public PlayerField(Context context, Handler handler) {
     super(context);
     this.handler = handler;
+    Resources resources = getResources();
     nick = new TextView(context);
     nick.setText("");
     bsLvlLabel = new TextView(context);
-    bsLvlLabel.setText("BasicLvl");
+    bsLvlLabel.setText(resources.getString(R.string.basic_level));
     bsLvlVal = new TextView(context);
     bsLvlVal.setText("1");
     totalLvlLabel = new TextView(context);
-    totalLvlLabel.setText("TotalLvl");
+    totalLvlLabel.setText(resources.getString(R.string.total_level));
     totalLvlVal = new TextView(context);
     totalLvlVal.setText("1");
     gender = new TextView(context);
-    gender.setText("M");
+    gender.setText(resources.getString(R.string.Man_abbreviation));
     nickRow = new TableRow(context);
     bsLvlLabelRow = new TableRow(context);
     bsLvlValRow = new TableRow(context);
@@ -99,15 +101,18 @@ public class PlayerField extends TableLayout {
   void update(final int basic, final int total, final boolean genderVal) {
     handler.post(new Runnable() {
       public void run() {
+        Resources resources = getResources();
         bsLvlVal.setText(Integer.toString(basic));
         totalLvlVal.setText(Integer.toString(total));
         if(genderVal == Player.MAN){
-          gender.setText("M");
-          gender.setTextColor(Color.BLUE);
+          gender.setText(resources.getString(R.string.Man_abbreviation));
+          int color = resources.getColor(R.color.colorMan);
+          gender.setTextColor(Color.argb((color >> 24) & 0xff, (color >> 16) & 0xff, (color >> 8) & 0xff, (color) & 0xff));
         }
         else {
-          gender.setText("W");
-          gender.setTextColor(Color.MAGENTA);
+          gender.setText(resources.getString(R.string.Woman_abbreviation));
+          int color = resources.getColor(R.color.colorWoman);
+          gender.setTextColor(Color.argb((color >> 24) & 0xff, (color >> 16) & 0xff, (color >> 8) & 0xff, (color) & 0xff));
         }
       }
     });

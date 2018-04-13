@@ -17,9 +17,7 @@ public class LevelDisplayFragment extends Fragment {
   Handler handler;
   private ArrayList<PlayerField> playerFields;
 
-  public LevelDisplayFragment() {
-    // Required empty public constructor
-  }
+  public LevelDisplayFragment() {}
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -4,4 +4,13 @@
     <string name="munchkin_port">munchkin_port</string>
     <string name="munchkin_ip">munchkin_ip</string>
     <string name="munchkin_nickname">munchkin_nickname</string>
+    <string name="save_ip">Save</string>
+    <string name="save_nick_name">Save</string>
+    <string name="nick_name">nickname</string>
+    <string name="ip">ip</string>
+    <string name="basic_level">Basic Lvl</string>
+    <string name="total_level">Total Lvl</string>
+    <string name="equipment_level">Eq lvl</string>
+    <string name="Woman_abbreviation">W</string>
+    <string name="Man_abbreviation">M</string>
 </resources>
