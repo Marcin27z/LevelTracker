@@ -55,6 +55,15 @@ class Server extends Thread {
         clientHandler.send(object);
     }
   }
+
+  void disconnectClient(int id) {
+    clientHandlers.get(id).disconnect();
+    try {
+      clientHandlers.get(id).join();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
 }
 
 class ClientHandler extends Thread {
@@ -74,7 +83,7 @@ class ClientHandler extends Thread {
     try {
       objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
       objectInputStream = new ObjectInputStream(socket.getInputStream());
-      messageWaiter = new MessageWaiter(objectInputStream, onlineEventListener, id);
+      messageWaiter = new MessageWaiter(objectInputStream, onlineEventListener, id, socket);
       messageWaiter.start();
       queue = new ArrayBlockingQueue<>(10);
     } catch (IOException e) {
@@ -99,6 +108,17 @@ class ClientHandler extends Thread {
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
+  }
+
+  void disconnect() {
+    try {
+      socket.close();
+      messageWaiter.join();
+    } catch (IOException | InterruptedException e) {
+      e.printStackTrace();
+    }
+
+
   }
 
   int getClientId() {

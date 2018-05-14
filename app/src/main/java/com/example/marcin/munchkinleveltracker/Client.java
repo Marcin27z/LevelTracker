@@ -27,7 +27,7 @@ class Client extends Thread {
       socket = new Socket(address, port);
       objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
       objectInputStream = new ObjectInputStream(socket.getInputStream());
-      messageWaiter = new MessageWaiter(objectInputStream, onlineEventListener, 0);
+      messageWaiter = new MessageWaiter(objectInputStream, onlineEventListener, 0, socket);
       messageWaiter.start();
     } catch (IOException e) {
       e.printStackTrace();
@@ -43,4 +43,12 @@ class Client extends Thread {
     }
   }
 
+  void disconnect() {
+    try {
+      socket.close();
+      messageWaiter.join();
+    } catch (IOException | InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
 }

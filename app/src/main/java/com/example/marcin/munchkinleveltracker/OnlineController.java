@@ -29,6 +29,7 @@ public class OnlineController implements onlineEventListener {
     if(me == 0) server.sendToAll(gameState);
   }
 
+  @Override
   public void newMessageArrived(Object object, int id) {
     if(me == 0) server.sendToAllExcept(object, id);
     GameState receivedGameState = (GameState) object;
@@ -55,6 +56,12 @@ public class OnlineController implements onlineEventListener {
     masterController.updateView();
   }
 
+  @Override
+  public void endDisconnected(int id) {
+    if (me == 1) client.disconnect();
+    if (me == 0) server.disconnectClient(id);
+  }
+
   void initMasterController(MasterController masterController) {
     this.masterController = masterController;
   }
@@ -62,4 +69,6 @@ public class OnlineController implements onlineEventListener {
 
 interface onlineEventListener {
   void newMessageArrived(Object object, int id);
+
+  void endDisconnected(int id);
 }
